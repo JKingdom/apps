@@ -56,8 +56,9 @@ export default class ObservableApi implements ObservableApiInterface {
   }
 
   rawStorage = <T> (key: SectionItem<Storages>, ...params: Array<any>): Observable<T> => {
+    const coverKey = key.section.replace(/^\S/, s => s.toUpperCase()) + ' ' + key.name.replace(/^\S/, s => s.toUpperCase());
     return this
-      .rawStorageMulti([key, ...params] as KeyWithParams)
+      .rawStorageMulti([Object.assign({}, key, { key: coverKey }), ...params] as KeyWithParams)
       .pipe(
         // @ts-ignore After upgrade to 6.3.2
         map(([result]: Array<T>): T =>
