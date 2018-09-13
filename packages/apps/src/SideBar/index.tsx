@@ -29,11 +29,6 @@ class SideBar extends React.PureComponent<Props> {
           secondary
           vertical
         >
-          <img
-            alt='polkadot'
-            className='apps--SideBar-logo'
-            src={polkadotLogo}
-          />
           {
             routing.routes
               .filter((route) =>

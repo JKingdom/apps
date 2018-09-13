@@ -1,7 +1,7 @@
 {
   "name": "@polkadot/apps",
   "version": "0.20.1",
-  "description": "An Apps portal into the Polkadot network",
+  "description": "An Apps portal into the Chainx network",
   "main": "index.js",
   "homepage": ".",
   "repository": "https://github.com/polkadot-js/apps.git",
