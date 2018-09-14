@@ -33,7 +33,8 @@ function App (props: Props) {
 
 // tslint:disable-next-line
 var url = (process.env.WS_URL === null) || (process.env.WS_URL === '')
-    ? undefined
+    // ? undefined
+    ? 'ws://47.105.73.172:8082/'
     : process.env.WS_URL;
 
 console.log('process.env.WS_URL=', process.env.WS_URL);
