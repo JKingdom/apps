@@ -102,6 +102,9 @@ class Queue extends React.Component<Props, State> {
         isValid && !isUndefined(values[index]),
         true
       );
+    // @TODO
+    const index = new Uint8Array([1, 0]);
+    extrinsic.index = index;
     const encoded = isValid && extrinsic.params
       ? encode(extrinsic, values, apiSupport)
       : new Uint8Array([]);

@@ -56,7 +56,16 @@ export default class ObservableApi implements ObservableApiInterface {
   }
 
   rawStorage = <T> (key: SectionItem<Storages>, ...params: Array<any>): Observable<T> => {
-    const coverKey = key.section.replace(/^\S/, s => s.toUpperCase()) + ' ' + key.name.replace(/^\S/, s => s.toUpperCase());
+    // @TODO
+    const keyMap = {
+      'Staking FreeBalanceOf': 'Balances FreeBalance'
+    };
+    let coverKey = key.section.replace(/^\S/, s => s.toUpperCase()) + ' ' + key.name.replace(/^\S/, s => s.toUpperCase());
+    // @ts-ignore
+    if (keyMap[coverKey]) {
+      // @ts-ignore
+      coverKey = keyMap[coverKey];
+    }
     return this
       .rawStorageMulti([Object.assign({}, key, { key: coverKey }), ...params] as KeyWithParams)
       .pipe(
