@@ -58,7 +58,8 @@ export default class ObservableApi implements ObservableApiInterface {
   rawStorage = <T> (key: SectionItem<Storages>, ...params: Array<any>): Observable<T> => {
     // @TODO
     const keyMap = {
-      'Staking FreeBalanceOf': 'Balances FreeBalance'
+      'Staking FreeBalanceOf': 'Balances FreeBalance',
+      'System AccountIndexOf': 'System AccountNonce'
     };
     let coverKey = key.section.replace(/^\S/, s => s.toUpperCase()) + ' ' + key.name.replace(/^\S/, s => s.toUpperCase());
     // @ts-ignore
