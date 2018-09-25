@@ -8,7 +8,6 @@ import { Routing,
 import accounts from './accounts';
 import addresses from './addresses';
 import democracy from './democracy';
-import example from './example';
 import explorer from './explorer';
 import extrinsics from './extrinsics';
 import rpc from './rpc';
@@ -28,7 +27,6 @@ const routes: Routes = process.env.UI_MODE === 'light'
     addresses
   )
   : ([] as Routes).concat(
-    example,
     explorer,
     transfer,
     staking,
