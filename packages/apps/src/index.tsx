@@ -33,7 +33,7 @@ function App (props: Props) {
 }
 
 // tslint:disable-next-line
-var url = 'ws://47.105.73.172:8082/'
+var url = 'ws://192.168.1.237:8082/'
 
 console.log('process.env.WS_URL=', process.env.WS_URL);
 console.log('Web socket url=', url);
