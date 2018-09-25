@@ -11,7 +11,7 @@ import './styles';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import Api from '@polkadot/ui-react-rx/Api';
 
@@ -34,12 +34,12 @@ export default function createApp (App: React.ComponentType<BareProps>, { api, c
       provider={provider}
       url={url}
     >
-      <HashRouter>
+      <BrowserRouter>
         <App
           className={className}
           style={style}
         />
-      </HashRouter>
+      </BrowserRouter>
     </Api>,
     rootElement
   );
