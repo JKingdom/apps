@@ -91,7 +91,7 @@ export interface ObservableApiInterface {
   stakingNominatorsFor: (address: string) => Observable<Array<string>>,
   stakingNominating: (address: string) => Observable<string | undefined>,
   stakingReservedBalanceOf: (address: string) => Observable<BN | undefined>,
-  systemAccountIndexOf: (address: string) => Observable<BN | undefined>,
+  systemAccountNonce: (address: string) => Observable<BN | undefined>,
   timestampBlockPeriod: () => Observable<BN | undefined>,
   timestampNow: () => Observable<Date | undefined>,
   validatorCount: () => Observable<BN | undefined>,

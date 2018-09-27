@@ -26,7 +26,7 @@ import UnnominateButton from './UnnominateButton';
 import translate from '../translate';
 
 type Props = I18nProps & {
-  systemAccountIndexOf?: BN,
+  systemAccountNonce?: BN,
   address: string,
   balances: RxBalanceMap,
   name: string,
@@ -178,12 +178,12 @@ class Account extends React.PureComponent<Props, State> {
   }
 
   private send (extrinsic: SectionItem<Extrinsics>, values: Array<RawParam$Value>) {
-    const { systemAccountIndexOf, address, queueExtrinsic } = this.props;
+    const { systemAccountNonce, address, queueExtrinsic } = this.props;
     const publicKey = decodeAddress(address);
 
     queueExtrinsic({
       extrinsic,
-      nonce: systemAccountIndexOf || new BN(0),
+      nonce: systemAccountNonce || new BN(0),
       publicKey,
       values
     });
@@ -223,5 +223,5 @@ export default withMulti(
   translate,
   withObservable('stakingNominatorsFor', { paramProp: 'address' }),
   withObservable('stakingNominating', { paramProp: 'address' }),
-  withObservable('systemAccountIndexOf', { paramProp: 'address' })
+  withObservable('systemAccountNonce', { paramProp: 'address' })
 );

@@ -27,6 +27,9 @@ type ResultProposalDeposits = [BN, Array<string>];
 const defaultMapFn = (result: any): any =>
   result;
 
+console.log(storage);
+// this.rawStorage(storage.staking.public.freeBalanceOf, address)
+
 export default class ObservableApi implements ObservableApiInterface {
   private api: RxApiInterface;
 
@@ -56,19 +59,8 @@ export default class ObservableApi implements ObservableApiInterface {
   }
 
   rawStorage = <T> (key: SectionItem<Storages>, ...params: Array<any>): Observable<T> => {
-    // @TODO
-    const keyMap = {
-      'Staking FreeBalanceOf': 'Balances FreeBalance',
-      'System AccountIndexOf': 'System AccountNonce'
-    };
-    let coverKey = key.section.replace(/^\S/, s => s.toUpperCase()) + ' ' + key.name.replace(/^\S/, s => s.toUpperCase());
-    // @ts-ignore
-    if (keyMap[coverKey]) {
-      // @ts-ignore
-      coverKey = keyMap[coverKey];
-    }
     return this
-      .rawStorageMulti([Object.assign({}, key, { key: coverKey }), ...params] as KeyWithParams)
+      .rawStorageMulti([key, ...params] as KeyWithParams)
       .pipe(
         // @ts-ignore After upgrade to 6.3.2
         map(([result]: Array<T>): T =>
@@ -485,8 +477,9 @@ export default class ObservableApi implements ObservableApiInterface {
       );
   }
 
+  // @TODO 更改方法名
   stakingFreeBalanceOf = (address: string): Observable<OptBN> => {
-    return this.rawStorage(storage.staking.public.freeBalanceOf, address);
+    return this.rawStorage(storage.balances.public.freeBalance, address);
   }
 
   stakingNominatorsFor = (address: string): Observable<Array<string>> => {
@@ -516,8 +509,9 @@ export default class ObservableApi implements ObservableApiInterface {
     return this.rawStorage(storage.timestamp.public.now);
   }
 
-  systemAccountIndexOf = (address: string): Observable<OptBN> => {
-    return this.rawStorage(storage.system.public.accountIndexOf, address);
+  // AccountIndexOf => accountNonce
+  systemAccountNonce = (address: string): Observable<OptBN> => {
+    return this.rawStorage(storage.system.public.accountNonce, address);
   }
 
   validatorCount = (): Observable<OptBN> => {
